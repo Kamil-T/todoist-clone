@@ -1,7 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 
-const firebaseConfig = firebase.initializeApp({
+const config = {
   apiKey: 'AIzaSyBH4APkYXYSvb3waRRlyYuJ6zXXE5kB2UU',
   authDomain: 'todoist-testproject.firebaseapp.com',
   databaseURL: 'https://todoist-testproject.firebaseio.com',
@@ -9,6 +9,8 @@ const firebaseConfig = firebase.initializeApp({
   storageBucket: 'todoist-testproject.appspot.com',
   messagingSenderId: '892547432031',
   appId: '1:892547432031:web:bd287ca7a1aead057a25ea'
-})
+}
 
-export { firebaseConfig as firebase }
+export default !firebase.apps.length
+  ? firebase.initializeApp(config).firestore()
+  : firebase.app().firestore()

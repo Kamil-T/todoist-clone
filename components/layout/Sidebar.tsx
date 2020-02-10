@@ -9,19 +9,19 @@ export const Sidebar = () => {
   return (
     <div className='sidebar' data-testid='sidebar'>
       <ul className='sidebar-items'>
-        <li>
+        <li data-testid='inbox' className='inbox'>
           <span>
             <FaInbox />
           </span>
           Inbox
         </li>
-        <li>
+        <li data-testid='today' className='today'>
           <span>
             <FaRegCalendar />
           </span>
           Today
         </li>
-        <li>
+        <li data-testid='next_7' className='next_7'>
           <span>
             <FaRegCalendarAlt />
           </span>
@@ -35,6 +35,7 @@ export const Sidebar = () => {
         </span>
         <h2>Projects</h2>
       </div>
+      <ul className='sidebar-projects'>Project Component</ul>
     </div>
   )
 }

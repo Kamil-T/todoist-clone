@@ -9,10 +9,12 @@ const Header = (props: HeaderProps) => {
         <div className='logo'>
           <img src='/images/logo.png' alt='Todoist' />
         </div>
-        <div>
+        <div className='settings'>
           <ul>
-            <li>+</li>
-            <li>
+            <li data-testid='quick-add-task-action' className='settings-add'>
+              +
+            </li>
+            <li data-testid='dark-mode-action' className='settings-darkmode'>
               <FaPizzaSlice />
             </li>
           </ul>
