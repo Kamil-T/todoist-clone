@@ -9,6 +9,7 @@ export const useTasks = selectedProject => {
 
   useEffect(() => {
     let unsubscribe = firebase
+      .firestore()
       .collection('tasks')
       .where('userId', '==', 'JHQssoAQ496Ygn1mTuM1')
 
@@ -45,20 +46,20 @@ export const useTasks = selectedProject => {
   return { tasks, archivedTasks }
 }
 
-export const useProjects = selectedProject => {
+export const useProjects = () => {
   const [projects, setProjects] = useState([])
 
   useEffect(() => {
-    let unsubscribe = firebase
+    firebase
       .firestore()
       .collection('projects')
       .where('userId', '==', 'JHQssoAQ496Ygn1mTuM1')
       .orderBy('projectId')
       .get()
       .then(snapshot => {
-        const allProjects = snapshot.docs.map(projet => ({
-          ...projects.data(),
-          docId: projects.id
+        const allProjects = snapshot.docs.map(project => ({
+          ...project.data(),
+          docId: project.id
         }))
 
         if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {

@@ -1,3 +1,6 @@
+import { useContext, useState } from 'react'
+import { useSelectedProjectValue } from '../../context/SelectedProjectProvider'
+import { Projects } from '../Projects'
 import {
   FaChevronDown,
   FaInbox,
@@ -6,6 +9,11 @@ import {
 } from 'react-icons/fa'
 
 export const Sidebar = () => {
+  const { setSelectedProject } = useSelectedProjectValue()
+
+  const [active, setActive] = useState('inbox')
+  const [showProjects, setShowProjects] = useState(true)
+
   return (
     <div className='sidebar' data-testid='sidebar'>
       <ul className='sidebar-items'>
@@ -35,7 +43,7 @@ export const Sidebar = () => {
         </span>
         <h2>Projects</h2>
       </div>
-      <ul className='sidebar-projects'>Project Component</ul>
+      <ul className='sidebar-projects'>{showProjects && <Projects />}</ul>
     </div>
   )
 }
