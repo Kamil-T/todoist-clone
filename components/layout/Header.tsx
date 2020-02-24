@@ -11,10 +11,10 @@ const Header = (props: HeaderProps) => {
         </div>
         <div className='settings'>
           <ul>
-            <li data-testid='quick-add-task-action' className='settings-add'>
+            <li data-testid='quick-add-task-action' className='settings__add'>
               +
             </li>
-            <li data-testid='dark-mode-action' className='settings-darkmode'>
+            <li data-testid='dark-mode-action' className='settings__darkmode'>
               <FaPizzaSlice />
             </li>
           </ul>

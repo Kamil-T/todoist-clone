@@ -2,12 +2,13 @@
 
 // General Settings
 html {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
-
 *,
 *:before,
 *:after {
+  -webkit-box-sizing: inherit;
   box-sizing: inherit;
 }
 
@@ -18,8 +19,14 @@ body {
   font-family: 'Roboto', sans-serif;
   color: #202020;
   background-color: #fafafa;
+  font-smooth: always;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
 }
 
 // Variables
@@ -207,7 +214,7 @@ header {
             background-color: rgba(255, 255, 255, 0.2);
           }
 
-          &.settings-add {
+          &.settings__add {
             margin-right: 15px;
             font-size: 30px;
 
@@ -218,7 +225,7 @@ header {
             }
           }
 
-          &.settings-darkmode {
+          &.settings__darkmode {
             button {
               @include transparent-button();
               color: white;
@@ -257,14 +264,14 @@ header {
   }
 
   li {
-    &:hover .sidebar-project-delete {
+    &:hover .sidebar__project-delete {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
     }
   }
- 
-  &-project {
+
+  &__project {
     cursor: pointer;
 
     div:nth-child(1) {
@@ -296,46 +303,46 @@ header {
     }
 
     &:nth-child(1) {
-      .sidebar-dot {
+      .sidebar__dot {
         color: #6accbc;
       }
     }
     &:nth-child(2) {
-      .sidebar-dot {
+      .sidebar__dot {
         color: #fad003;
       }
     }
     &:nth-child(3) {
-      .sidebar-dot {
+      .sidebar__dot {
         color: #ff8d85;
       }
     }
     &:nth-child(4) {
-      .sidebar-dot {
+      .sidebar__dot {
         color: #ff9932;
       }
     }
     &:nth-child(5) {
-      .sidebar-dot {
+      .sidebar__dot {
         color: #af38eb;
       }
     }
   }
 
-  &-projects {
+  &__projects {
     padding-left: 3px;
   }
 
-  &-project {
+  &__project {
     @include va('left');
   }
 
-  &-dot {
+  &__dot {
     margin-right: 10px;
     font-size: 30px;
   }
 
-  &-middle {
+  &__middle {
     margin-top: 20px;
     margin-bottom: 20px;
     display: -webkit-box;
@@ -364,7 +371,7 @@ header {
     }
   }
 
-  &-items {
+  &__generic {
     li {
       list-style-type: none;
       color: #333;

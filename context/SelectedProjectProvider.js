@@ -3,7 +3,7 @@ import { createContext, useState, useContext } from 'react'
 export const SelectedProjectContext = createContext()
 
 const SelectedProjectProvider = ({ children }) => {
-  const { selectedProject, setSelectedProject } = useState('INBOX')
+  const [selectedProject, setSelectedProject] = useState('INBOX')
 
   return (
     <SelectedProjectContext.Provider

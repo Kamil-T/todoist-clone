@@ -1,6 +1,6 @@
 import firebase from '../firebase'
 
-export const Checkbox = ({ id }) => {
+const Checkbox = ({ id }) => {
   const archiveTask = () => {
     firebase
       .firestore()
@@ -20,3 +20,4 @@ export const Checkbox = ({ id }) => {
     </div>
   )
 }
+export default Checkbox
