@@ -28,7 +28,11 @@ const IndividualProject = ({ project }) => {
       <span
         className='sidebar__project-delete'
         data-testid='delete-project'
-        onClick={() => setShowConfirm(!showConfirm)}>
+        tabIndex={0}
+        role='button'
+        aria-label='Confirm deletion of project'
+        onClick={() => setShowConfirm(!showConfirm)}
+        onKeyDown={() => setShowConfirm(!showConfirm)}>
         <FaTrashAlt />
         {showConfirm && (
           <div className='project-delete-modal'>
@@ -36,11 +40,13 @@ const IndividualProject = ({ project }) => {
               <p>Are you sure you want to delete this project?</p>
               <button
                 type='button'
+                aria-label='Delete project'
                 onClick={() => deleteProject(project.docId)}>
                 Delete
               </button>
               <button
                 type='button'
+                aria-label='Cancel'
                 onClick={() => setShowConfirm(!showConfirm)}>
                 Cancel
               </button>

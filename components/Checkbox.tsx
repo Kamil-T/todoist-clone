@@ -1,6 +1,6 @@
 import firebase from '../firebase'
 
-const Checkbox = ({ id }) => {
+const Checkbox = ({ id, taskDesc }) => {
   const archiveTask = () => {
     firebase
       .firestore()
@@ -15,8 +15,11 @@ const Checkbox = ({ id }) => {
     <div
       className='checkbox-holder'
       data-testid='checkbox-action'
+      aria-label={`Mark ${taskDesc} as done`}
+      role='button'
+      tabIndex={0}
       onClick={() => archiveTask()}>
-      <span className='checkbox'></span>
+      <span className='checkbox' />
     </div>
   )
 }

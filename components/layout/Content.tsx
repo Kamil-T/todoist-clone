@@ -1,9 +1,11 @@
 import Sidebar from './Sidebar'
 import Tasks from '../Tasks'
 
-export const Content = () => (
+const Content = () => (
   <section className='content'>
     <Sidebar />
     <Tasks />
   </section>
 )
+
+export default Content
