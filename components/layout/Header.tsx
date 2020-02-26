@@ -3,8 +3,8 @@ import { useState } from 'react'
 import AddTask from '../AddTask'
 
 const Header = ({ darkMode, setDarkMode }) => {
-  const [shouldShowMain, setShouldShowMain] = useState(false)
-  const [showQuickAddTask, setShowQuickAddTask] = useState(false)
+  const [shouldShowMain, setShouldShowMain] = useState<boolean>(false)
+  const [showQuickAddTask, setShowQuickAddTask] = useState<boolean>(false)
 
   return (
     <header className='header' data-testid='header'>

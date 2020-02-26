@@ -12,12 +12,12 @@ const AddTask = ({
   showQuickAddTask,
   setShowQuickAddTask
 }) => {
-  const [task, setTask] = useState('')
-  const [taskDate, setTaskDate] = useState('')
-  const [project, setProject] = useState('')
-  const [showMain, setShowMain] = useState(shouldShowMain)
-  const [showProjectOverlay, setShowProjectOverlay] = useState(false)
-  const [showTaskDate, setShowTaskDate] = useState(false)
+  const [task, setTask] = useState<string>('')
+  const [taskDate, setTaskDate] = useState<string>('')
+  const [project, setProject] = useState<string>('')
+  const [showMain, setShowMain] = useState<boolean>(shouldShowMain)
+  const [showProjectOverlay, setShowProjectOverlay] = useState<boolean>(false)
+  const [showTaskDate, setShowTaskDate] = useState<boolean>(false)
 
   const { selectedProject } = useSelectedProjectValue()
 

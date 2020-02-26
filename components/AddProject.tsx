@@ -4,8 +4,8 @@ import { generatePushId } from '../helpers'
 import { useProjectsValue } from '../context/ProjectsContext'
 
 const AddProject = ({ shouldShow = false }) => {
-  const [show, setShow] = useState(shouldShow)
-  const [projectName, setProjectName] = useState('')
+  const [show, setShow] = useState<boolean>(shouldShow)
+  const [projectName, setProjectName] = useState<string>('')
 
   const projectId = generatePushId()
   const { projects, setProjects } = useProjectsValue()

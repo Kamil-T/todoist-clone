@@ -4,7 +4,7 @@ import { useProjectsValue } from '../context/ProjectsContext'
 import IndividualProject from './IndividualProject'
 
 const Projects = ({ activeValue = null }) => {
-  const [active, setActive] = useState(activeValue)
+  const [active, setActive] = useState<boolean>(activeValue)
   const { setSelectedProject } = useSelectedProjectValue()
   const { projects } = useProjectsValue()
 

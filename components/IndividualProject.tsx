@@ -5,7 +5,7 @@ import { useProjectsValue } from '../context/ProjectsContext'
 import firebase from '../firebase'
 
 const IndividualProject = ({ project }) => {
-  const [showConfirm, setShowConfirm] = useState(false)
+  const [showConfirm, setShowConfirm] = useState<boolean>(false)
   const { projects, setProjects } = useProjectsValue()
   const { setSelectedProject } = useSelectedProjectValue()
 

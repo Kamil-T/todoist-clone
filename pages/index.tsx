@@ -6,7 +6,7 @@ import ProjectsProvider from '../context/ProjectsContext'
 import SelectedProjectProvider from '../context/SelectedProjectProvider'
 
 const Index = ({ darkModeDefault = false }) => {
-  const [darkMode, setDarkMode] = useState(darkModeDefault)
+  const [darkMode, setDarkMode] = useState<boolean>(darkModeDefault)
 
   return (
     <SelectedProjectProvider>
