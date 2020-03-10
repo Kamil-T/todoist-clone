@@ -18,7 +18,8 @@ const Checkbox = ({ id, taskDesc }) => {
       aria-label={`Mark ${taskDesc} as done`}
       role='button'
       tabIndex={0}
-      onClick={() => archiveTask()}>
+      onClick={() => archiveTask()}
+      onKeyDown={() => archiveTask()}>
       <span className='checkbox' />
     </div>
   )
