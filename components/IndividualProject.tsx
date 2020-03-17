@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { FaTrashAlt } from 'react-icons/fa'
-import { useSelectedProjectValue } from '../context/SelectedProjectProvider'
+import { useSelectedProjectValue } from '../context/SelectedProjectContext'
 import { useProjectsValue } from '../context/ProjectsContext'
 import firebase from '../firebase'
 

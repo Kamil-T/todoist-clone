@@ -3,7 +3,7 @@ import Header from '../components/layout/Header'
 import Content from '../components/layout/Content'
 import '../index.scss'
 import ProjectsProvider from '../context/ProjectsContext'
-import SelectedProjectProvider from '../context/SelectedProjectProvider'
+import SelectedProjectProvider from '../context/SelectedProjectContext'
 
 const Index = ({ darkModeDefault = false }) => {
   const [darkMode, setDarkMode] = useState<boolean>(darkModeDefault)

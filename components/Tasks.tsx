@@ -3,7 +3,7 @@ import { useTasks } from '../hooks'
 import { collatedTasks } from '../constants'
 import { getTitle, getCollatedTitle, getCollatedTasks } from '../helpers'
 import { useProjectsValue } from '../context/ProjectsContext'
-import { useSelectedProjectValue } from '../context/SelectedProjectProvider'
+import { useSelectedProjectValue } from '../context/SelectedProjectContext'
 import { useEffect } from 'react'
 import AddTask from './AddTask'
 

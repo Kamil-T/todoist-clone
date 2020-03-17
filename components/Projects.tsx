@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useSelectedProjectValue } from '../context/SelectedProjectProvider'
+import { useSelectedProjectValue } from '../context/SelectedProjectContext'
 import { useProjectsValue } from '../context/ProjectsContext'
 import IndividualProject from './IndividualProject'
 
