@@ -2,7 +2,12 @@ module.exports = {
   collectCoverageFrom: [
     '**/*.{js,jsx,ts,tsx}',
     '!**/*.d.ts',
-    '!**/node_modules/**'
+    '!**/node_modules/**',
+    '!**/firebase.js',
+    '!**/*.config.js',
+    '!**/hooks/*.js',
+    '!**/context/*.js',
+    '!**/coverage/**'
   ],
 
   testPathIgnorePatterns: ['/node_modules/', '/.next/'],
