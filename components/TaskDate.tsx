@@ -7,7 +7,7 @@ const TaskDate = ({ setTaskDate, showTaskDate, setShowTaskDate }) =>
       <ul className='task-date__list'>
         <li>
           <div
-            data-testid='task-date-overlay'
+            data-testid='task-date-today'
             tabIndex={0}
             aria-label='Select today as the task date'
             role='button'
