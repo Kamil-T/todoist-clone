@@ -1,0 +1,226 @@
+import { act, render, cleanup, fireEvent } from '@testing-library/react'
+import AddTask from '../components/AddTask'
+import { useSelectedProjectValue } from '../context/SelectedProjectContext'
+
+jest.mock('../context/SelectedProjectContext', () => ({
+  useSelectedProjectValue: jest.fn(() => ({ selectedProject: '1' }))
+}))
+
+jest.mock('../context/ProjectsContext', () => ({
+  useProjectsValue: jest.fn(() => ({ projects: [] }))
+}))
+
+beforeEach(cleanup)
+
+describe('<AddTask />', () => {
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
+  describe('Success', () => {
+    it('renders the <AddTask />', () => {
+      const { queryByTestId } = render(<AddTask />)
+      expect(queryByTestId('add-task-comp')).toBeTruthy()
+    })
+
+    it('renders the <AddTask /> quick overlay', () => {
+      const { setShowQuickAddTask } = jest.fn()
+
+      const { queryByTestId } = render(
+        <AddTask
+          showAddTaskMain
+          shouldShowMain={false}
+          showQuickAddTask
+          setShowQuickAddTask={setShowQuickAddTask}
+        />
+      )
+      expect(queryByTestId('quick-add-task')).toBeTruthy()
+    })
+
+    it('renders the <AddTask /> show main when clicked', () => {
+      const { queryByTestId } = render(<AddTask showAddTaskMain />)
+
+      fireEvent.click(queryByTestId('show-main-action'))
+      expect(queryByTestId('add-task-main')).toBeTruthy()
+    })
+
+    it('renders the <AddTask /> project overlay when clicked using onClick', () => {
+      const { queryByTestId } = render(<AddTask showAddTaskMain />)
+
+      fireEvent.click(queryByTestId('show-main-action'))
+      expect(queryByTestId('add-task-main')).toBeTruthy()
+
+      fireEvent.click(queryByTestId('show-project-overlay'))
+      expect(queryByTestId('project-overlay')).toBeTruthy()
+    })
+
+    it('renders the <AddTask /> project overlay when clicked using onKeyDown', () => {
+      const { queryByTestId } = render(<AddTask showAddTaskMain />)
+
+      fireEvent.keyDown(queryByTestId('show-main-action'))
+      expect(queryByTestId('add-task-main')).toBeTruthy()
+
+      fireEvent.keyDown(queryByTestId('show-project-overlay'))
+      expect(queryByTestId('project-overlay')).toBeTruthy()
+    })
+
+    it('renders the <AddTask /> task date overlay when clicked using onClick', () => {
+      const { queryByTestId } = render(<AddTask showAddTaskMain />)
+
+      fireEvent.click(queryByTestId('show-main-action'))
+      expect(queryByTestId('add-task-main')).toBeTruthy()
+
+      fireEvent.click(queryByTestId('show-task-date-overlay'))
+      expect(queryByTestId('task-date-overlay')).toBeTruthy()
+    })
+
+    it('renders the <AddTask /> task date overlay when clicked using onKeyDown', () => {
+      const { queryByTestId } = render(<AddTask showAddTaskMain />)
+
+      fireEvent.keyDown(queryByTestId('show-main-action'))
+      expect(queryByTestId('add-task-main')).toBeTruthy()
+
+      fireEvent.keyDown(queryByTestId('show-task-date-overlay'))
+      expect(queryByTestId('task-date-overlay')).toBeTruthy()
+    })
+
+    it('renders the <AddTask /> main when cancel is clicked using onClick', () => {
+      const { queryByTestId } = render(<AddTask showAddTaskMain />)
+
+      fireEvent.click(queryByTestId('show-main-action'))
+      expect(queryByTestId('add-task-main')).toBeTruthy()
+
+      fireEvent.click(queryByTestId('add-task-main-cancel'))
+      expect(queryByTestId('add-task-main')).toBeFalsy()
+    })
+
+    it('renders the <AddTask /> main when cancel is clicked using onKeyDown', () => {
+      const { queryByTestId } = render(<AddTask showAddTaskMain />)
+
+      fireEvent.keyDown(queryByTestId('show-main-action'))
+      expect(queryByTestId('add-task-main')).toBeTruthy()
+
+      fireEvent.keyDown(queryByTestId('add-task-main-cancel'))
+      expect(queryByTestId('add-task-main')).toBeFalsy()
+    })
+
+    it('renders the <AddTask /> for quick add task and then clicks cancel using onClick', () => {
+      const showQuickAddTask = true
+      const setShowQuickAddTask = jest.fn(() => !showQuickAddTask)
+      const { queryByTestId } = render(
+        <AddTask
+          setShowQuickAddTask={setShowQuickAddTask}
+          showQuickAddTask={true}
+          showAddTaskMain
+        />
+      )
+
+      fireEvent.click(queryByTestId('show-main-action'))
+      expect(queryByTestId('add-task-main')).toBeTruthy()
+
+      fireEvent.click(queryByTestId('add-task-quick-cancel'))
+      expect(setShowQuickAddTask).toHaveBeenCalled()
+    })
+
+    it('renders the <AddTask /> for quick add task and then clicks cancel using onKeyDown', () => {
+      const showQuickAddTask = true
+      const setShowQuickAddTask = jest.fn(() => !showQuickAddTask)
+      const { queryByTestId } = render(
+        <AddTask
+          setShowQuickAddTask={setShowQuickAddTask}
+          showQuickAddTask={true}
+          showAddTaskMain
+        />
+      )
+
+      fireEvent.keyDown(queryByTestId('show-main-action'))
+      expect(queryByTestId('add-task-main')).toBeTruthy()
+
+      fireEvent.keyDown(queryByTestId('add-task-quick-cancel'))
+      expect(setShowQuickAddTask).toHaveBeenCalled()
+    })
+
+    it('renders <AddTask /> and adds a task to the today', () => {
+      useSelectedProjectValue.mockImplementation(() => ({
+        selectedProject: 'TODAY'
+      }))
+      const showQuickAddTask = true
+      const setShowQuickAddTask = jest.fn(() => !showQuickAddTask)
+      const { queryByTestId } = render(
+        <AddTask
+          showQuickAddTask={false}
+          setShowQuickAddTask={setShowQuickAddTask}
+          showAddTaskMain
+        />
+      )
+
+      fireEvent.click(queryByTestId('show-main-action'))
+      expect(queryByTestId('add-task-content')).toBeTruthy()
+
+      fireEvent.change(queryByTestId('add-task-content'), {
+        target: { value: 'I am a new task and I am amazing' }
+      })
+      expect(queryByTestId('add-task-content').value).toBe(
+        'I am a new task and I am amazing'
+      )
+
+      fireEvent.click(queryByTestId('add-task'))
+      expect(queryByTestId('add-task-main')).toBeTruthy()
+    })
+
+    it('renders <AddTask /> and adds a task to the NEXT_7', () => {
+      useSelectedProjectValue.mockImplementation(() => ({
+        selectedProject: 'NEXT_7'
+      }))
+      const showQuickAddTask = true
+      const setShowQuickAddTask = jest.fn(() => !showQuickAddTask)
+      const { queryByTestId } = render(
+        <AddTask
+          showQuickAddTask={false}
+          setShowQuickAddTask={setShowQuickAddTask}
+          showAddTaskMain
+        />
+      )
+
+      fireEvent.click(queryByTestId('show-main-action'))
+      expect(queryByTestId('add-task-content')).toBeTruthy()
+
+      fireEvent.change(queryByTestId('add-task-content'), {
+        target: { value: 'I am a new task and I am amazing' }
+      })
+      expect(queryByTestId('add-task-content').value).toBe(
+        'I am a new task and I am amazing'
+      )
+
+      fireEvent.click(queryByTestId('add-task'))
+      expect(queryByTestId('add-task-main')).toBeTruthy()
+    })
+
+    it('renders <AddTask /> and adds a task with a task date', () => {
+      useSelectedProjectValue.mockImplementation(() => ({
+        selectedProject: '1'
+      }))
+
+      const { queryByTestId } = render(<AddTask showAddTaskMain={true} />)
+
+      fireEvent.click(queryByTestId('show-main-action'))
+      expect(queryByTestId('add-task-content')).toBeTruthy()
+      expect(queryByTestId('add-task-main')).toBeTruthy()
+
+      fireEvent.change(queryByTestId('add-task-content'), {
+        target: { value: 'I am a the best task' }
+      })
+      expect(queryByTestId('add-task-content').value).toBe(
+        'I am a the best task'
+      )
+
+      fireEvent.click(queryByTestId('show-task-date-overlay'))
+      expect(queryByTestId('task-date-overlay')).toBeTruthy()
+
+      fireEvent.click(queryByTestId('task-date-today'))
+      expect(queryByTestId('task-date-overlay')).toBeFalsy()
+
+      fireEvent.click(queryByTestId('add-task'))
+    })
+  })
+})
