@@ -41,13 +41,15 @@ const IndividualProject = ({ project }) => {
               <button
                 type='button'
                 aria-label='Delete project'
-                onClick={() => deleteProject(project.docId)}>
+                onClick={() => deleteProject(project.docId)}
+                onKeyDown={() => deleteProject(project.docId)}>
                 Delete
               </button>
               <button
                 type='button'
                 aria-label='Cancel'
-                onClick={() => setShowConfirm(!showConfirm)}>
+                onClick={() => setShowConfirm(!showConfirm)}
+                onKeyDown={() => setShowConfirm(!showConfirm)}>
                 Cancel
               </button>
             </div>
