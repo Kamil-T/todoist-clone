@@ -28,7 +28,7 @@ const AddProject = ({ shouldShow = false }) => {
   return (
     <div className='add-project' data-testid='add-project'>
       {show && (
-        <div className='add-project__input'>
+        <div className='add-project__input' data-testid='add-project-inner'>
           <input
             value={projectName}
             onChange={e => setProjectName(e.target.value)}
@@ -41,6 +41,7 @@ const AddProject = ({ shouldShow = false }) => {
             className='add-project__submit'
             type='button'
             onClick={() => addProject()}
+            onKeyDown={() => addProject()}
             data-testid='add-project-submit'>
             Add Project
           </button>
