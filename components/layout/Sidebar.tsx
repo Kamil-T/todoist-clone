@@ -22,7 +22,7 @@ const Sidebar = () => {
           data-testid='inbox'
           className={active === 'inbox' ? 'active' : undefined}>
           <div
-            test-dataid='inbox-action'
+            data-testid='inbox-action'
             aria-label='Show inbox tasks'
             tabIndex={0}
             role='button'

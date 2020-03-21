@@ -8,6 +8,7 @@ jest.mock('../context/SelectedProjectContext', () => ({
 
 jest.mock('../context/ProjectsContext', () => ({
   useProjectsValue: jest.fn(() => ({
+    setProjects: jest.fn(),
     projects: [
       {
         name: 'THE OFFICE',

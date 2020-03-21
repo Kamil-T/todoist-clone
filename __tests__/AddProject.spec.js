@@ -1,6 +1,5 @@
 import { render, cleanup, fireEvent } from '@testing-library/react'
 import AddProject from '../components/AddProject'
-import { useSelectedProjectValue } from '../context/SelectedProjectContext'
 
 jest.mock('../context/SelectedProjectContext', () => ({
   useSelectedProjectValue: jest.fn()
@@ -8,6 +7,7 @@ jest.mock('../context/SelectedProjectContext', () => ({
 
 jest.mock('../context/ProjectsContext', () => ({
   useProjectsValue: jest.fn(() => ({
+    setProjects: jest.fn(),
     projects: [
       {
         name: 'THE OFFICE',
